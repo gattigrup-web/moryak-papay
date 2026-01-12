@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moryak Papay ⚓</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1d2a;
+  color: #ffffff;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #102b3f;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+.lang button {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.hero {
+  padding: 40px 20px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 32px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+}
+.card {
+  background: #143b55;
+  padding: 20px;
+  border-radius: 10px;
+  width: 260px;
+}
+.status span {
+  font-size: 20px;
+}
+footer {
+  font-size: 12px;
+  opacity: 0.7;
+  padding: 20px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🚩 Моряк Папай</div>
+  <div class="lang">
+    <button onclick="setLang('en')">🇬🇧</button>
+    <button onclick="setLang('ua')">🇺🇦</button>
+  </div>
+</header>
+
+<div class="hero">
+  <h1 id="title">Open professional social platform</h1>
+  <p id="desc">
+    Seafarers, workers and companies showcase experience, work and availability.
+    Viewing profiles does not require registration.
+  </p>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <h3>🚦 Availability</h3>
+    <p class="status">🟢 Ready | 🟡 Soon | 🔴 Not ready</p>
+  </div>
+  <div class="card">
+    <h3>⭐ Rating</h3>
+    <p>Public 1–5 star rating based on user votes</p>
+  </div>
+  <div class="card">
+    <h3>📸 Profile</h3>
+    <p>Profile photo required. Gallery of completed work.</p>
+  </div>
+</div>
+
+<footer id="footer">
+By registering, you confirm that this website is a social networking platform.
+The website and its creator are not responsible for user-generated content or employment outcomes.
+</footer>
+
+<script>
+function setLang(lang) {
+  if (lang === 'ua') {
+    document.getElementById('title').innerText =
+      'Відкрита професійна соціальна платформа';
+    document.getElementById('desc').innerText =
+      'Моряки, працівники та компанії демонструють досвід, роботи та готовність до праці.';
+    document.getElementById('footer').innerText =
+      'Реєструючись, ви підтверджуєте, що сайт є соціальною платформою. Адміністрація не несе відповідальності.';
+  } else {
+    document.getElementById('title').innerText =
+      'Open professional social platform';
+    document.getElementById('desc').innerText =
+      'Seafarers, workers and companies showcase experience, work and availability.';
+    document.getElementById('footer').innerText =
+      'By registering, you confirm that this website is a social networking platform. No responsibility is assumed.';
+  }
+}
+</script>
+
+</body>
+</html>
