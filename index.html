@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moryak Papay ⚓</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --bg: #0b1d2a;
+  --card: #132f44;
+  --accent: #f4c430;
+  --green: #2ecc71;
+  --yellow: #f1c40f;
+  --red: #e74c3c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: #fff;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #081620;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+.lang button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.hero {
+  padding: 50px 20px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.hero p {
+  opacity: 0.85;
+}
+.actions {
+  margin-top: 25px;
+}
+.actions button {
+  padding: 12px 20px;
+  margin: 5px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+.primary {
+  background: var(--accent);
+  color: #000;
+}
+.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.section {
+  padding: 40px 20px;
+}
+.section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--card);
+  border-radius: 15px;
+  padding: 20px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #555;
+}
+.status span {
+  font-size: 18px;
+}
+.green { color: var(--green); }
+.yellow { color: var(--yellow); }
+.red { color: var(--red); }
+.rating {
+  margin-top: 10px;
+}
+footer {
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🚩 Моряк Папай</div>
+  <div class="lang">
+    <button onclick="setLang('en')">🇬🇧</button>
+    <button onclick="setLang('ua')">🇺🇦</button>
+  </div>
+</header>
+
+<div class="hero">
+  <h1 id="title">Professional platform for work & crew</h1>
+  <p id="desc">
+    Seafarers, workers and companies present experience, availability and reputation.
+  </p>
+  <div class="actions">
+    <button class="primary">Create profile</button>
+    <button class="secondary">Browse profiles</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2 id="profilesTitle">Example profiles</h2>
+  <div class="cards">
+
+    <div class="card">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div>
+          <strong>Chief Engineer</strong><br>
+          Container Vessel
+        </div>
+      </div>
+      <div class="status green">🟢 Ready for work</div>
+      <div class="rating">⭐ 4.7 (128)</div>
+    </div>
+
+    <div class="card">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div>
+          <strong>Electrician</strong><br>
+          Industrial
+        </div>
+      </div>
+      <div class="status yellow">🟡 Ready from 20.03.2026</div>
+      <div class="rating">⭐ 4.4 (52)</div>
+    </div>
+
+    <div class="card">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div>
+          <strong>Shipping Company</strong><br>
+          Bulk Fleet
+        </div>
+      </div>
+      <div class="status red">🔴 Not hiring now</div>
+      <div class="rating">⭐ 4.1 (89)</div>
+    </div>
+
+  </div>
+</div>
+
+<footer id="footer">
+By registering, you confirm that this is a social networking platform.
+The website and its creator are not responsible for user content or employment results.
+</footer>
+
+<script>
+function setLang(lang) {
+  if (lang === 'ua') {
+    title.innerText = 'Професійна платформа для роботи та екіпажу';
+    desc.innerText =
+      'Моряки, спеціалісти та компанії демонструють досвід, готовність і репутацію.';
+    profilesTitle.innerText = 'Приклади профілів';
+    footer.innerText =
+      'Реєструючись, ви підтверджуєте, що це соціальна платформа. Адміністрація не несе відповідальності.';
+  } else {
+    title.innerText = 'Professional platform for work & crew';
+    desc.innerText =
+      'Seafarers, workers and companies present experience, availability and reputation.';
+    profilesTitle.innerText = 'Example profiles';
+    footer.innerText =
+      'By registering, you confirm that this is a social networking platform. No responsibility is assumed.';
+  }
+}
+</script>
+
+</body>
+</html>
