@@ -1,36 +1,38 @@
-
-                                                                      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Moryak Papay ⚓</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Подключаем стили -->
+    <title>Поиск моряков</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Шапка – логотип и поиск -->
+    <header class="vk-header">
+        <div class="container">
+            <a href="#" class="vk-logo">🌊 SeaCrew</a>
+            <input type="text" id="search-input" placeholder="Ищем моряков…" class="search-box">
+            <button id="search-btn" class="search-btn">🔍</button>
+        </div>
+    </header>
 
-<header class="site-header">
-    <img src="papay.png" alt="Moryak Papay">
-    <h1>Moryak Papay</h1>
-</header>
+    <!-- Основная лента постов -->
+    <main class="container">
+        <section id="feed" class="feed"></section>
 
-<div class="container">
+        <!-- Блок добавления нового поста (можно скрыть, если не нужен) -->
+        <form id="post-form" class="post-form">
+            <textarea id="post-text" placeholder="Кратко о деле…" rows="2"></textarea>
+            <input type="file" id="post-image" accept="image/*">
+            <button type="submit">Добавить пост</button>
+        </form>
+    </main>
 
-    <!-- Блок создания нового поста -->
-    <section class="new-post">
-        <textarea id="text" placeholder="What's new?"></textarea>
-        <input type="file" id="image" accept="image/*">
-        <button onclick="addPost()">Post (24 h)</button>
-    </section>
+    <!-- Показ результатов поиска (список моряков) -->
+    <aside class="sidebar">
+        <h2>Моряки</h2>
+        <ul id="sailors-list"></ul>
+    </aside>
 
-    <!-- Лента постов -->
-    <section id="feed" class="feed"></section>
-</div>
-
-<!-- Подключаем скрипт -->
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-                                                                                                                        
