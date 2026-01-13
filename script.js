@@ -1,20 +1,15 @@
-/* Массив, в котором будем хранить посты.
-   При перезагрузке страницы массив будет «пробуждён» из localStorage,
-   если он там есть (это упрощённый способ сохранять данные между сессиями). */
 let posts = JSON.parse(localStorage.getItem('posts')) || [];
 
-/* Сохраняем массив в localStorage каждый раз, когда он меняется */
 function savePosts() {
     localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-/* Добавляем новый пост */
 function addPost() {
     const text = document.getElementById('text').value.trim();
     const imageFile = document.getElementById('image').files[0];
     const createdAt = Date.now();
 
-    // Если и текст, и файл пусты – просто выходим
+    // Проверяем наличие текста или файла
     if (!text && !imageFile) {
         alert('Введите текст или выберите изображение');
         return;
@@ -22,7 +17,7 @@ function addPost() {
 
     const post = { text, createdAt };
 
-    // Если выбран файл – читаем его как DataURL (чтобы потом вставить в <img>)
+    // Читаем изображение, если выбрано
     if (imageFile) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -30,6 +25,9 @@ function addPost() {
             posts.unshift(post);
             savePosts();
             render();
+        };
+        reader.onerror = () => {
+            alert('Ошибка при загрузке изображения');
         };
         reader.readAsDataURL(imageFile);
     } else {
@@ -43,7 +41,6 @@ function addPost() {
     document.getElementById('image').value = '';
 }
 
-/* Рендерим только те посты, которые моложе 24 ч */
 function render() {
     const feed = document.getElementById('feed');
     feed.innerHTML = '';
@@ -55,13 +52,8 @@ function render() {
         const div = document.createElement('div');
         div.className = 'post';
 
-        // Текст (если есть)
         const textHTML = p.text ? `<div>${p.text}</div>` : '';
-
-        // Картинка (если есть)
         const imgHTML = p.image ? `<img src="${p.image}" alt="post image">` : '';
-
-        // Осталось времени до «истечения» (чтобы показать таймер)
         const msLeft = 24 * 60 * 60 * 1000 - (now - p.createdAt);
         const hoursLeft = Math.ceil(msLeft / (60 * 60 * 1000));
 
@@ -74,8 +66,5 @@ function render() {
     });
 }
 
-/* Авто‑обновление ленты каждые 60 секунд */
 setInterval(render, 60_000);
-
-/* При загрузке страницы сразу рендерим те посты, которые уже есть */
 render();
