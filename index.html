@@ -7,135 +7,115 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b1d2a;
-  color: #fff;
-}
-header {
-  padding: 15px 20px;
-  background: #081620;
-  display: flex;
-  justify-content: space-between;
-}
-.logo { font-size: 22px; font-weight: bold; }
-.container { padding: 20px; max-width: 800px; margin: auto; }
-h1, h2 { text-align: center; }
+    font-family: Arial, sans-serif;
+      background: #0b1d2a;
+        color: #ffffff;
+        }
+        header {
+          display: flex;
+            justify-content: space-between;
+              align-items: center;
+                padding: 15px;
+                  background: #102b3f;
+                  }
+                  .logo {
+                    font-size: 22px;
+                      font-weight: bold;
+                      }
+                      .lang button {
+                        margin-left: 5px;
+                          cursor: pointer;
+                          }
+                          .hero {
+                            padding: 40px 20px;
+                              text-align: center;
+                              }
+                              .hero h1 {
+                                font-size: 32px;
+                                }
+                                .cards {
+                                  display: flex;
+                                    flex-wrap: wrap;
+                                      justify-content: center;
+                                        gap: 15px;
+                                          padding: 20px;
+                                          }
+                                          .card {
+                                            background: #143b55;
+                                              padding: 20px;
+                                                border-radius: 10px;
+                                                  width: 260px;
+                                                  }
+                                                  .status span {
+                                                    font-size: 20px;
+                                                    }
+                                                    footer {
+                                                      font-size: 12px;
+                                                        opacity: 0.7;
+                                                          padding: 20px;
+                                                            text-align: center;
+                                                            }
+                                                            </style>
+                                                            </head>
 
-.card {
-  background: #132f44;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-}
+                                                            <body>
 
-input, select, textarea, button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 15px;
-}
-button {
-  background: #f4c430;
-  color: #000;
-  cursor: pointer;
-  font-weight: bold;
-}
+                                                            <header>
+                                                              <div class="logo">🚩 Моряк Папай</div>
+                                                                <div class="lang">
+                                                                    <button onclick="setLang('en')">🇬🇧</button>
+                                                                        <button onclick="setLang('ua')">🇺🇦</button>
+                                                                          </div>
+                                                                          </header>
 
-.profile {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #555;
-  overflow: hidden;
-}
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+                                                                          <div class="hero">
+                                                                            <h1 id="title">Open professional social platform</h1>
+                                                                              <p id="desc">
+                                                                                  Seafarers, workers and companies showcase experience, work and availability.
+                                                                                      Viewing profiles does not require registration.
+                                                                                        </p>
+                                                                                        </div>
 
-.big {
-  font-size: 22px;
-  font-weight: bold;
-}
-.status { margin-top: 10px; }
-.green { color: #2ecc71; }
-.yellow { color: #f1c40f; }
-.red { color: #e74c3c; }
+                                                                                        <div class="cards">
+                                                                                          <div class="card">
+                                                                                              <h3>🚦 Availability</h3>
+                                                                                                  <p class="status">🟢 Ready | 🟡 Soon | 🔴 Not ready</p>
+                                                                                                    </div>
+                                                                                                      <div class="card">
+                                                                                                          <h3>⭐ Rating</h3>
+                                                                                                              <p>Public 1–5 star rating based on user votes</p>
+                                                                                                                </div>
+                                                                                                                  <div class="card">
+                                                                                                                      <h3>📸 Profile</h3>
+                                                                                                                          <p>Profile photo required. Gallery of completed work.</p>
+                                                                                                                            </div>
+                                                                                                                            </div>
 
-footer {
-  font-size: 12px;
-  opacity: 0.7;
-  text-align: center;
-  padding: 20px;
-}
-</style>
-</head>
+                                                                                                                            <footer id="footer">
+                                                                                                                            By registering, you confirm that this website is a social networking platform.
+                                                                                                                            The website and its creator are not responsible for user-generated content or employment outcomes.
+                                                                                                                            </footer>
 
-<body>
+                                                                                                                            <script>
+                                                                                                                            function setLang(lang) {
+                                                                                                                              if (lang === 'ua') {
+                                                                                                                                  document.getElementById('title').innerText =
+                                                                                                                                        'Відкрита професійна соціальна платформа';
+                                                                                                                                            document.getElementById('desc').innerText =
+                                                                                                                                                  'Моряки, працівники та компанії демонструють досвід, роботи та готовність до праці.';
+                                                                                                                                                      document.getElementById('footer').innerText =
+                                                                                                                                                            'Реєструючись, ви підтверджуєте, що сайт є соціальною платформою. Адміністрація не несе відповідальності.';
+                                                                                                                                                              } else {
+                                                                                                                                                                  document.getElementById('title').innerText =
+                                                                                                                                                                        'Open professional social platform';
+                                                                                                                                                                            document.getElementById('desc').innerText =
+                                                                                                                                                                                  'Seafarers, workers and companies showcase experience, work and availability.';
+                                                                                                                                                                                      document.getElementById('footer').innerText =
+                                                                                                                                                                                            'By registering, you confirm that this website is a social networking platform. No responsibility is assumed.';
+                                                                                                                                                                                              }
+                                                                                                                                                                                              }
+                                                                                                                                                                                              </script>
 
-<header>
-  <div class="logo">🚩 Моряк Папай</div>
-</header>
-
-<div class="container">
-
-h1>Create profile</h1>
-
-<div class="card">
-  <input type="email" placeholder="Email (required)" required>
-  <input type="file" accept="image/*" capture="camera" required>
-
-  <select>
-    <option>Rank</option>
-    <option>Captain</option>
-    <option>Chief Engineer</option>
-    <option>Officer</option>
-    <option>Rating</option>
-  </select>
-
-  <input type="text" placeholder="Vessel type (Container, Bulk, Tanker)">
-  <input type="number" placeholder="Age">
-  <input type="number" placeholder="Experience in rank (years)">
-  <textarea placeholder="Personal wishes / preferences"></textarea>
-
-  <select>
-    <option>Status</option>
-    <option>🟢 Ready</option>
-    <option>🟡 Soon</option>
-    <option>🔴 Not ready</option>
-  </select>
-
-  <button>Create profile</button>
-</div>
-
-<h2>Example profile</h2>
-
-<div class="card profile">
-  <div class="avatar"></div>
-  <div>
-    <div class="big">Chief Engineer</div>
-    <div>Container Vessel</div>
-    <div>Age: 42</div>
-    <div>Experience: 12 years</div>
-    <div class="status green">🟢 Ready for work</div>
-    <div>⭐ 4.7 (128)</div>
-    <div><em>Looking for long contract, Europe</em></div>
-  </div>
-</div>
-
-</div>
-
-<footer>
-This website is a social networking platform. The website and its creator are not responsible for user content or employment results.
-</footer>
-
-</body>
-</html>
+                                                                                                                                                                                              </body>
+                                                                                                                                                                                              </html>
+                                                                                                                                                                                              
