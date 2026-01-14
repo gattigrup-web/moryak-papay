@@ -1,38 +1,168 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Поиск моряков</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Срочные вакансии для моряков</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Шапка – логотип и поиск -->
-    <header class="vk-header">
-        <div class="container">
-            <a href="#" class="vk-logo">🌊 SeaCrew</a>
-            <input type="text" id="search-input" placeholder="Ищем моряков…" class="search-box">
-            <button id="search-btn" class="search-btn">🔍</button>
+  <header class="header">
+    <div class="container header__wrap">
+      <h1 class="logo">SeaJobs</h1>
+      <nav class="nav">
+        <button id="openAddOffer" class="btn btn-primary">Оставить предложение</button>
+        <button id="openLogin" class="btn btn-outline" data-auth="login">Войти</button>
+        <button id="openRegister" class="btn btn-outline" data-auth="register">Регистрация</button>
+        <button id="logoutBtn" class="btn btn-outline hidden">Выйти</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="filters">
+      <h2>Срочные вакансии</h2>
+      <div class="filters__row">
+        <input type="text" id="searchInput" placeholder="Поиск по должности, компании, судну..." />
+        <select id="rankSelect">
+          <option value="">Все должности</option>
+          <option value="Captain">Капитан</option>
+          <option value="Chief Officer">Старший помощник</option>
+          <option value="Second Officer">Второй помощник</option>
+          <option value="Chief Engineer">Старший механик</option>
+          <option value="AB">Матрос</option>
+          <option value="Cook">Повар</option>
+        </select>
+        <select id="vesselSelect">
+          <option value="">Все типы судов</option>
+          <option value="Bulk Carrier">Bulk Carrier</option>
+          <option value="Container">Container</option>
+          <option value="Tanker">Tanker</option>
+          <option value="Offshore">Offshore</option>
+          <option value="Passenger">Passenger</option>
+        </select>
+        <select id="urgencySelect">
+          <option value="">Любая срочность</option>
+          <option value="ASAP">ASAP</option>
+          <option value="7 days">До 7 дней</option>
+          <option value="14 days">До 14 дней</option>
+        </select>
+        <button id="resetFilters" class="btn btn-light">Сбросить</button>
+      </div>
+    </section>
+
+    <section id="vacanciesList" class="cards"></section>
+
+    <section class="info">
+      <p class="muted">
+        Просмотр вакансий доступен без регистрации. Чтобы оставить предложение (вакансию или запрос), нужна регистрация по email.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <small>© SeaJobs — платформа для моряков и компаний. Без лишнего.</small>
+    </div>
+  </footer>
+
+  <!-- Модалка: Вход -->
+  <div class="modal hidden" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal__content">
+      <h3 id="loginTitle">Вход</h3>
+      <form id="loginForm">
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com" />
+        </label>
+        <label>
+          Пароль
+          <input type="password" name="password" required minlength="6" />
+        </label>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn-primary">Войти</button>
+          <button type="button" class="btn btn-light" data-close>Отмена</button>
         </div>
-    </header>
+      </form>
+    </div>
+  </div>
 
-    <!-- Основная лента постов -->
-    <main class="container">
-        <section id="feed" class="feed"></section>
+  <!-- Модалка: Регистрация -->
+  <div class="modal hidden" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+    <div class="modal__content">
+      <h3 id="registerTitle">Регистрация</h3>
+      <form id="registerForm">
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com" />
+        </label>
+        <label>
+          Пароль (мин. 6 символов)
+          <input type="password" name="password" required minlength="6" />
+        </label>
+        <label>
+          Роль
+          <select name="role" required>
+            <option value="seafarer">Моряк</option>
+            <option value="company">Компания</option>
+          </select>
+        </label>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+          <button type="button" class="btn btn-light" data-close>Отмена</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-        <!-- Блок добавления нового поста (можно скрыть, если не нужен) -->
-        <form id="post-form" class="post-form">
-            <textarea id="post-text" placeholder="Кратко о деле…" rows="2"></textarea>
-            <input type="file" id="post-image" accept="image/*">
-            <button type="submit">Добавить пост</button>
-        </form>
-    </main>
+  <!-- Модалка: Добавить предложение -->
+  <div class="modal hidden" id="addOfferModal" role="dialog" aria-modal="true" aria-labelledby="addOfferTitle">
+    <div class="modal__content">
+      <h3 id="addOfferTitle">Оставить предложение</h3>
+      <form id="addOfferForm">
+        <label>
+          Тип
+          <select name="type" required>
+            <option value="vacancy">Вакансия</option>
+            <option value="request">Запрос моряка</option>
+          </select>
+        </label>
+        <label>
+          Компания / Имя
+          <input type="text" name="company" required placeholder="Название компании или ваше имя" />
+        </label>
+        <label>
+          Должность
+          <input type="text" name="rank" required placeholder="Напр. AB, Chief Engineer" />
+        </label>
+        <label>
+          Судно
+          <input type="text" name="vessel" required placeholder="Тип судна" />
+        </label>
+        <label>
+          Срочность
+          <select name="urgency" required>
+            <option value="ASAP">ASAP</option>
+            <option value="7 days">До 7 дней</option>
+            <option value="14 days">До 14 дней</option>
+          </select>
+        </label>
+        <label>
+          Контакты (email/телеграм/телефон)
+          <input type="text" name="contact" required placeholder="contact@example.com / @telegram / +xxx" />
+        </label>
+        <label>
+          Описание
+          <textarea name="description" rows="4" placeholder="Кратко: требования, рейс, зарплата (если хотите)"></textarea>
+        </label>
+        <div class="modal__actions">
+          <button type="submit" class="btn btn-primary">Опубликовать</button>
+          <button type="button" class="btn btn-light" data-close>Отмена</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    <!-- Показ результатов поиска (список моряков) -->
-    <aside class="sidebar">
-        <h2>Моряки</h2>
-        <ul id="sailors-list"></ul>
-    </aside>
-
-    <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
