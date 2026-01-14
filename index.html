@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Срочные вакансии для моряков</title>
+  <title>SeaJobs</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -11,43 +11,24 @@
     <div class="container header__wrap">
       <h1 class="logo">SeaJobs</h1>
       <nav class="nav">
-        <button id="openAddOffer" class="btn btn-primary">Оставить предложение</button>
-        <button id="openLogin" class="btn btn-outline" data-auth="login">Войти</button>
-        <button id="openRegister" class="btn btn-outline" data-auth="register">Регистрация</button>
-        <button id="logoutBtn" class="btn btn-outline hidden">Выйти</button>
+        <button id="openAddOffer" class="btn btn-primary">Vacancies & Resume</button>
+        <button id="openLogin" class="btn btn-outline">Login</button>
+        <button id="openRegister" class="btn-icon"><span class="icon">🟢</span></button>
+        <button id="logoutBtn" class="btn btn-outline hidden">Logout</button>
+        <div class="lang-switch">
+          <button data-lang="en">🇬🇧 EN</button>
+          <button data-lang="ua">🇺🇦 UA</button>
+        </div>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="filters">
-      <h2>Срочные вакансии</h2>
+      <h2>Urgent Vacancies</h2>
       <div class="filters__row">
-        <input type="text" id="searchInput" placeholder="Поиск по должности, компании, судну..." />
-        <select id="rankSelect">
-          <option value="">Все должности</option>
-          <option value="Captain">Капитан</option>
-          <option value="Chief Officer">Старший помощник</option>
-          <option value="Second Officer">Второй помощник</option>
-          <option value="Chief Engineer">Старший механик</option>
-          <option value="AB">Матрос</option>
-          <option value="Cook">Повар</option>
-        </select>
-        <select id="vesselSelect">
-          <option value="">Все типы судов</option>
-          <option value="Bulk Carrier">Bulk Carrier</option>
-          <option value="Container">Container</option>
-          <option value="Tanker">Tanker</option>
-          <option value="Offshore">Offshore</option>
-          <option value="Passenger">Passenger</option>
-        </select>
-        <select id="urgencySelect">
-          <option value="">Любая срочность</option>
-          <option value="ASAP">ASAP</option>
-          <option value="7 days">До 7 дней</option>
-          <option value="14 days">До 14 дней</option>
-        </select>
-        <button id="resetFilters" class="btn btn-light">Сбросить</button>
+        <input type="text" id="searchInput" placeholder="Enter rank, company, vessel..." />
+        <button id="resetFilters" class="btn btn-light">Reset</button>
       </div>
     </section>
 
@@ -55,109 +36,79 @@
 
     <section class="info">
       <p class="muted">
-        Просмотр вакансий доступен без регистрации. Чтобы оставить предложение (вакансию или запрос), нужна регистрация по email.
+        Viewing vacancies is open. To publish your vacancy or resume, registration is required.
       </p>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__wrap">
-      <small>© SeaJobs — платформа для моряков и компаний. Без лишнего.</small>
+      <small>© SeaJobs — platform for seafarers and companies.</small>
     </div>
   </footer>
 
-  <!-- Модалка: Вход -->
-  <div class="modal hidden" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <!-- Login Modal -->
+  <div class="modal hidden" id="loginModal">
     <div class="modal__content">
-      <h3 id="loginTitle">Вход</h3>
+      <h3>Login</h3>
       <form id="loginForm">
-        <label>
-          Email
-          <input type="email" name="email" required placeholder="you@example.com" />
-        </label>
-        <label>
-          Пароль
-          <input type="password" name="password" required minlength="6" />
-        </label>
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Password <input type="password" name="password" required /></label>
         <div class="modal__actions">
-          <button type="submit" class="btn btn-primary">Войти</button>
-          <button type="button" class="btn btn-light" data-close>Отмена</button>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="button" class="btn btn-light" data-close>Cancel</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Модалка: Регистрация -->
-  <div class="modal hidden" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+  <!-- Register Modal -->
+  <div class="modal hidden" id="registerModal">
     <div class="modal__content">
-      <h3 id="registerTitle">Регистрация</h3>
+      <h3>Register</h3>
       <form id="registerForm">
-        <label>
-          Email
-          <input type="email" name="email" required placeholder="you@example.com" />
-        </label>
-        <label>
-          Пароль (мин. 6 символов)
-          <input type="password" name="password" required minlength="6" />
-        </label>
-        <label>
-          Роль
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Password <input type="password" name="password" required minlength="6" /></label>
+        <label>Role
           <select name="role" required>
-            <option value="seafarer">Моряк</option>
-            <option value="company">Компания</option>
+            <option value="seafarer">Seafarer</option>
+            <option value="company">Company</option>
           </select>
         </label>
         <div class="modal__actions">
-          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-          <button type="button" class="btn btn-light" data-close>Отмена</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="button" class="btn btn-light" data-close>Cancel</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Модалка: Добавить предложение -->
-  <div class="modal hidden" id="addOfferModal" role="dialog" aria-modal="true" aria-labelledby="addOfferTitle">
+  <!-- Add Offer Modal -->
+  <div class="modal hidden" id="addOfferModal">
     <div class="modal__content">
-      <h3 id="addOfferTitle">Оставить предложение</h3>
+      <h3>Vacancies & Resume</h3>
       <form id="addOfferForm">
-        <label>
-          Тип
+        <label>Type
           <select name="type" required>
-            <option value="vacancy">Вакансия</option>
-            <option value="request">Запрос моряка</option>
+            <option value="vacancy">Vacancy</option>
+            <option value="resume">Resume</option>
           </select>
         </label>
-        <label>
-          Компания / Имя
-          <input type="text" name="company" required placeholder="Название компании или ваше имя" />
-        </label>
-        <label>
-          Должность
-          <input type="text" name="rank" required placeholder="Напр. AB, Chief Engineer" />
-        </label>
-        <label>
-          Судно
-          <input type="text" name="vessel" required placeholder="Тип судна" />
-        </label>
-        <label>
-          Срочность
+        <label>Company / Name <input type="text" name="company" required /></label>
+        <label>Rank <input type="text" name="rank" required /></label>
+        <label>Vessel <input type="text" name="vessel" required /></label>
+        <label>Urgency
           <select name="urgency" required>
             <option value="ASAP">ASAP</option>
-            <option value="7 days">До 7 дней</option>
-            <option value="14 days">До 14 дней</option>
+            <option value="7 days">7 days</option>
+            <option value="14 days">14 days</option>
           </select>
         </label>
-        <label>
-          Контакты (email/телеграм/телефон)
-          <input type="text" name="contact" required placeholder="contact@example.com / @telegram / +xxx" />
-        </label>
-        <label>
-          Описание
-          <textarea name="description" rows="4" placeholder="Кратко: требования, рейс, зарплата (если хотите)"></textarea>
-        </label>
+        <label>Contact <input type="text" name="contact" required /></label>
+        <label>Description <textarea name="description" rows="4"></textarea></label>
         <div class="modal__actions">
-          <button type="submit" class="btn btn-primary">Опубликовать</button>
-          <button type="button" class="btn btn-light" data-close>Отмена</button>
+          <button type="submit" class="btn btn-primary">Publish</button>
+          <button type="button" class="btn btn-light" data-close>Cancel</button>
         </div>
       </form>
     </div>
